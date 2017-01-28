@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 class ReadAllFromUrl
 {
-    public static void main(String[] args)
+    public static void getData()
     {
         InputStream is = null;
         iHealthUserData user;
