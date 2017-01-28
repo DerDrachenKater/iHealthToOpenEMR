@@ -23,11 +23,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="db46e060-baa7-48c6-9faf-1dbc81ee2df6">
-        <schema name="ehealth" object-types="column, constraint, function, index, procedure, table, dataset trigger, view" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="db46e060-baa7-48c6-9faf-1dbc81ee2df6">
@@ -66,7 +62,7 @@
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
+          <database-version value="5.5" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />

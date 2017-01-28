@@ -12,17 +12,17 @@ import java.io.IOException;
 
 public class UserInterface implements ActionListener
 {
-	private JFrame jFwindow;
-	private JPanel jPLayout, jPchoice, jPAnzeige, jPheader, jPdivide;
-	public JLabel jLtarget, jLtime, JLuserData, jLweight, jLbloodGlucose, jLbloodPresure, jLheader;
-	public JButton jBweight,jBbloodGlucose,jBbloodPresure,jBdiagram, jBtable, jBexport;
-	public JButton jBsend, jBabort, jBclose;
-	public JCheckBox jCBweight, jCBbloodGlucose, jCBbloodPresure;
-	public JComboBox<String> JCoBtime, JCoBtarget;
-	private JMenuItem jMIclose, jMIuse, jMIfaq, jMIdataReload,jMIuserData;
-	private Font menuFont, buttonFont, button2Font,itemFont, textFont;
-	private BufferedImage headerImg;
-	private JTextArea jTuse, jTfaq;
+    public JLabel jLtarget, jLtime, JLuserData, jLweight, jLbloodGlucose, jLbloodPresure, jLheader;
+    public JButton jBweight, jBbloodGlucose, jBbloodPresure, jBdiagram, jBtable, jBexport;
+    public JButton jBsend, jBabort, jBclose;
+    public JCheckBox jCBweight, jCBbloodGlucose, jCBbloodPresure;
+    public JComboBox<String> JCoBtime, JCoBtarget;
+    private JFrame jFwindow;
+    private JPanel jPLayout, jPchoice, jPAnzeige, jPheader, jPdivide;
+    private JMenuItem jMIclose, jMIuse, jMIfaq, jMIdataReload, jMIuserData;
+    private Font menuFont, buttonFont, button2Font, itemFont, textFont;
+    private BufferedImage headerImg;
+    private JTextArea jTuse, jTfaq;
 
 
     UserInterface()
