@@ -18,16 +18,16 @@ public class iHealthBloodGlucoseData
     @Override
     public String toString()
     {
-        return "iHealthBloodGlucoseData{" +
+        return "iHealthBloodGlucoseData{\n" +
                 "BG=" + BG +
-                ", DataID='" + DataID + '\'' +
-                ", DinnerSituation='" + DinnerSituation + '\'' +
-                ", DrugSituation='" + DrugSituation + '\'' +
-                ", MData=" + MData +
-                ", Note='" + Note + '\'' +
-                ", LastChangeTime=" + LastChangeTime +
-                ", DataSource='" + DataSource + '\'' +
-                ", TimeZone='" + TimeZone + '\'' +
+                ", \nDataID='" + DataID + '\'' +
+                ", \nDinnerSituation='" + DinnerSituation + '\'' +
+                ", \nDrugSituation='" + DrugSituation + '\'' +
+                ", \nMData=" + MData +
+                ", \nNote='" + Note + '\'' +
+                ", \nLastChangeTime=" + LastChangeTime +
+                ", \nDataSource='" + DataSource + '\'' +
+                ", \nTimeZone='" + TimeZone + '\'' +
                 '}';
     }
 }

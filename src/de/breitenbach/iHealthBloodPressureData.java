@@ -19,17 +19,17 @@ public class iHealthBloodPressureData
     @Override
     public String toString()
     {
-        return "iHealthBloodPressureData{" +
+        return "iHealthBloodPressureData{\n" +
                 "BPL=" + BPL +
-                ", DataID='" + DataID + '\'' +
-                ", HP=" + HP +
-                ", HR=" + HR +
-                ", LP=" + LP +
-                ", MDate=" + MDate +
-                ", Note='" + Note + '\'' +
-                ", LastChangeTime=" + LastChangeTime +
-                ", DataSource='" + DataSource + '\'' +
-                ", TimeZone='" + TimeZone + '\'' +
+                ", \nDataID='" + DataID + '\'' +
+                ", \nHP=" + HP +
+                ", \nHR=" + HR +
+                ", \nLP=" + LP +
+                ", \nMDate=" + MDate +
+                ", \nNote='" + Note + '\'' +
+                ", \nLastChangeTime=" + LastChangeTime +
+                ", \nDataSource='" + DataSource + '\'' +
+                ", \nTimeZone='" + TimeZone + '\'' +
                 '}';
     }
 }

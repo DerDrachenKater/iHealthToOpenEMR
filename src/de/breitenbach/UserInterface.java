@@ -18,7 +18,7 @@ public class UserInterface implements ActionListener
 	public JLabel jLtarget, jLtime, JLuserData, jLweight, jLbloodGlucose, jLbloodPresure, jLheader;
 	public JButton jBweight,jBbloodGlucose,jBbloodPresure,jBdiagram, jBtable, jBexport;
 	public JButton jBsend, jBabort, jBclose;
-	public JCheckBox jCBweight, jCBbloodGlucose, jCBbloodPresure;
+    private JCheckBox jCBweight, jCBbloodGlucose, jCBbloodPresure;
 	public JComboBox<String> JCoBtime, JCoBtarget;
 	private JMenuItem jMIclose, jMIuse, jMIfaq, jMIdataReload,jMIuserData;
 	private Font menuFont, buttonFont, button2Font,itemFont, textFont;

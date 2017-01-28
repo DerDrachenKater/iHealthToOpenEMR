@@ -17,15 +17,15 @@ public class iHealthWeightData
     @Override
     public String toString()
     {
-        return "iHealthBloodGlucoseData{" +
+        return "iHealthWeightData{\n" +
                 "BMI=" + BMI +
-                ", DataID='" + DataID + '\'' +
-                ", MDate=" + MDate +
-                ", Note='" + Note + '\'' +
-                ", WeightValue=" + WeightValue +
-                ", LastChangeTime=" + LastChangeTime +
-                ", DataSource='" + DataSource + '\'' +
-                ", TimeZone='" + TimeZone + '\'' +
+                ", \nDataID='" + DataID + '\'' +
+                ", \nMDate=" + MDate +
+                ", \nNote='" + Note + '\'' +
+                ", \nWeightValue=" + WeightValue +
+                ", \nLastChangeTime=" + LastChangeTime +
+                ", \nDataSource='" + DataSource + '\'' +
+                ", \nTimeZone='" + TimeZone + '\'' +
                 '}';
     }
 }
