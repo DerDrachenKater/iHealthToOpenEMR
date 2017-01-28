@@ -56,3 +56,5 @@ modules.xml
 # Würde .idea/inspectionProfiles/ löschen
 
 *.class
+
+\.idea/codeStyleSettings\.xml
