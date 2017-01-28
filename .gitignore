@@ -58,3 +58,5 @@ modules.xml
 *.class
 
 \.idea/codeStyleSettings\.xml
+
+\.idea/dbnavigator\.xml
