@@ -5,113 +5,113 @@ package de.breitenbach;
  */
 public class iHealthBloodPressureData
 {
-    int BPL;
-    String DataID;
-    int HP;
-    int HR;
-    int LP;
-    long MDate;
-    String Note;
-    long LastChangeTime;
-    String DataSource;
-    String TimeZone;
+    private int BPL;
+    private String DataID;
+    private int HP;
+    private int HR;
+    private int LP;
+    private long MDate;
+    private String Note;
+    private long LastChangeTime;
+    private String DataSource;
+    private String TimeZone;
 
-    public int getBPL()
+    int getBPL()
     {
         return BPL;
     }
 
-    public void setBPL(int BPL)
+    void setBPL(int BPL)
     {
         this.BPL = BPL;
     }
 
-    public String getDataID()
+    String getDataID()
     {
         return DataID;
     }
 
-    public void setDataID(String dataID)
+    void setDataID(String dataID)
     {
         DataID = dataID;
     }
 
-    public int getHP()
+    int getHP()
     {
         return HP;
     }
 
-    public void setHP(int HP)
+    void setHP(int HP)
     {
         this.HP = HP;
     }
 
-    public int getHR()
+    int getHR()
     {
         return HR;
     }
 
-    public void setHR(int HR)
+    void setHR(int HR)
     {
         this.HR = HR;
     }
 
-    public int getLP()
+    int getLP()
     {
         return LP;
     }
 
-    public void setLP(int LP)
+    void setLP(int LP)
     {
         this.LP = LP;
     }
 
-    public long getMDate()
+    long getMDate()
     {
         return MDate;
     }
 
-    public void setMDate(long MDate)
+    void setMDate(long MDate)
     {
         this.MDate = MDate;
     }
 
-    public String getNote()
+    String getNote()
     {
         return Note;
     }
 
-    public void setNote(String note)
+    void setNote(String note)
     {
         Note = note;
     }
 
-    public long getLastChangeTime()
+    long getLastChangeTime()
     {
         return LastChangeTime;
     }
 
-    public void setLastChangeTime(long lastChangeTime)
+    void setLastChangeTime(long lastChangeTime)
     {
         LastChangeTime = lastChangeTime;
     }
 
-    public String getDataSource()
+    String getDataSource()
     {
         return DataSource;
     }
 
-    public void setDataSource(String dataSource)
+    void setDataSource(String dataSource)
     {
         DataSource = dataSource;
     }
 
-    public String getTimeZone()
+    String getTimeZone()
     {
         return TimeZone;
     }
 
-    public void setTimeZone(String timeZone)
+    void setTimeZone(String timeZone)
     {
         TimeZone = timeZone;
     }

@@ -9,24 +9,35 @@ import java.util.Scanner;
 
 class ReadAllFromUrl
 {
-    public static void getData()
-    {
-        InputStream is = null;
-        iHealthUserData user;
-        iHealthWeightData weight;
-        iHealthBloodPressureData pressure;
-        iHealthBloodGlucoseData glucose;
+    static InputStream is = null;
+    static iHealthUserData user;
+    static iHealthWeightData[] weight;
+    static iHealthBloodPressureData[] pressure;
+    static iHealthBloodGlucoseData[] glucose;
 
+    public static void main(String[] args)
+    {
+
+        iHealthUserToDB.selectUser();
+        //getWeightFromiHealth();
+        //getBPFromiHealth();
+        iHealthBloodPressureToDB.selectBP();
+        iHealthWeightToDB.selectWeight();
+    }
+
+    public static void getWeightFromiHealth()
+    {
         try
         {
             URL url = new URL("https://openapi.ihealthlabs.eu/openapiv2/user/43caf107534145bbb9079fc640c2e355/weight.json/?client_id=8adb7479352e4731aa9bd51b7358cf68&client_secret=803e5babac9d483daa6902b34906f874&redirect_uri=http://localhost&access_token=SRmuCFxq6pdDNM5cAi7OJ9ZUhcbriZnI5JfbVAu-ntbvgdMLizPKwnnZdML5-2YCXtuVg5vbX9wAomNSbQhQG1-pmU1YeXfqXxg5Kae6qFYQ9l2b89fC4*T72tsy4sQc0k20qXS4hmgB31jOh5ofYY2-z2Mwp4q5ar8Pzu9A*rpUngo-jhAEi*wKmf1CyT4GfP7LEOki0zj6Y6jf-jc8cQ&sc=C0BCC8D6FD3744569F950D7348284F27&sv=9125F3B8BEE54E14B23407E9303B81BF");
             is = url.openStream();
             String json = new Scanner(is).useDelimiter("\\Z").next();
-
-            //System.out.println(new Scanner(is).useDelimiter("\\Z").next());
             Gson gWson = new Gson();
-            weight = gWson.fromJson(json, iHealthWeightData.class);
-            System.out.println(weight.toString()+"\n");
+            weight = gWson.fromJson(json, iHealthWeightData[].class);
+            for ( int i = 0; i < weight.length; i++)
+            {
+                iHealthWeightToDB.insertWeight(weight[i]);
+            }
 
         } catch (Exception e)
         {
@@ -46,18 +57,18 @@ class ReadAllFromUrl
                 }
             }
         }
+    }
 
+    public static void getUserDataFromiHealth()
+    {
         try
         {
             URL url = new URL("https://openapi.ihealthlabs.eu/openapiv2/user/43caf107534145bbb9079fc640c2e355.json/?client_id=8adb7479352e4731aa9bd51b7358cf68&client_secret=803e5babac9d483daa6902b34906f874&redirect_uri=http://localhost&access_token=SRmuCFxq6pdDNM5cAi7OJ9ZUhcbriZnI5JfbVAu-ntbvgdMLizPKwnnZdML5-2YCXtuVg5vbX9wAomNSbQhQG1-pmU1YeXfqXxg5Kae6qFYQ9l2b89fC4*T72tsy4sQc0k20qXS4hmgB31jOh5ofYY2-z2Mwp4q5ar8Pzu9A*rpUngo-jhAEi*wKmf1CyT4GfP7LEOki0zj6Y6jf-jc8cQ&sc=C0BCC8D6FD3744569F950D7348284F27&sv=F1E0F88C1C944688967B9254B4395537&locale=de_DE");
             is = url.openStream();
             String json = new Scanner(is).useDelimiter("\\Z").next();
-
-            //System.out.println(new Scanner(is).useDelimiter("\\Z").next());
             Gson gUson = new Gson();
             user = gUson.fromJson(json, iHealthUserData.class);
-            System.out.println(user.toString()+"\n");
-
+            iHealthUserToDB.insertUser(user);
         } catch (Exception e)
         {
             System.err.println("Allgemeiner Fehler");
@@ -76,18 +87,22 @@ class ReadAllFromUrl
                 }
             }
         }
+    }
 
+    public static void getBPFromiHealth()
+    {
         try
         {
             URL url = new URL("https://openapi.ihealthlabs.eu/openapiv2/user/43caf107534145bbb9079fc640c2e355/bp.json/?client_id=8adb7479352e4731aa9bd51b7358cf68&client_secret=803e5babac9d483daa6902b34906f874&redirect_uri=http://localhost&access_token=SRmuCFxq6pdDNM5cAi7OJ9ZUhcbriZnI5JfbVAu-ntbvgdMLizPKwnnZdML5-2YCXtuVg5vbX9wAomNSbQhQG1-pmU1YeXfqXxg5Kae6qFYQ9l2b89fC4*T72tsy4sQc0k20qXS4hmgB31jOh5ofYY2-z2Mwp4q5ar8Pzu9A*rpUngo-jhAEi*wKmf1CyT4GfP7LEOki0zj6Y6jf-jc8cQ&sc=C0BCC8D6FD3744569F950D7348284F27&sv=C6CFEE7A74724D01B8ACF94447962FD8");
             is = url.openStream();
             String json = new Scanner(is).useDelimiter("\\Z").next();
-
-            //System.out.println(new Scanner(is).useDelimiter("\\Z").next());
             Gson gPson = new Gson();
-            pressure = gPson.fromJson(json, iHealthBloodPressureData.class);
-            System.out.println(pressure.toString()+"\n");
+            pressure = gPson.fromJson(json, iHealthBloodPressureData[].class);
 
+            for ( int i = 0; i < pressure.length; i++)
+            {
+                iHealthBloodPressureToDB.insertBP(pressure[i]);
+            }
         } catch (Exception e)
         {
             System.err.println("Allgemeiner Fehler");
@@ -106,7 +121,10 @@ class ReadAllFromUrl
                 }
             }
         }
+    }
 
+    public void getBGFromiHealth()
+    {
         try
         {
             URL url = new URL("https://openapi.ihealthlabs.eu/openapiv2/user/43caf107534145bbb9079fc640c2e355/glucose.json/?client_id=8adb7479352e4731aa9bd51b7358cf68&client_secret=803e5babac9d483daa6902b34906f874&redirect_uri=http://localhost&access_token=SRmuCFxq6pdDNM5cAi7OJ9ZUhcbriZnI5JfbVAu-ntbvgdMLizPKwnnZdML5-2YCXtuVg5vbX9wAomNSbQhQG1-pmU1YeXfqXxg5Kae6qFYQ9l2b89fC4*T72tsy4sQc0k20qXS4hmgB31jOh5ofYY2-z2Mwp4q5ar8Pzu9A*rpUngo-jhAEi*wKmf1CyT4GfP7LEOki0zj6Y6jf-jc8cQ&sc=C0BCC8D6FD3744569F950D7348284F27&sv=76B31813CEE2403DB9512BD0E66FDAC5");
@@ -115,9 +133,12 @@ class ReadAllFromUrl
 
             //System.out.println(new Scanner(is).useDelimiter("\\Z").next());
             Gson gGson = new Gson();
-            glucose = gGson.fromJson(json, iHealthBloodGlucoseData.class);
-            System.out.println(glucose.toString()+"\n");
+            glucose = gGson.fromJson(json, iHealthBloodGlucoseData[].class);
 
+            for ( int i = 0; i < glucose.length; i++)
+            {
+                iHealthBloodGlucoseToDB.insertBG(glucose[i]);
+            }
         } catch (Exception e)
         {
             System.err.println("Allgemeiner Fehler");

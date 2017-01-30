@@ -6,103 +6,102 @@ package de.breitenbach;
 public class iHealthUserData
 {
 
-    int HeightUnit;
-    int WeightUnit;
-    long dateofbirth;
-    String gender;
-    short height;
-    String logo;
-    String nickname;
-    String userid;
-    short weight;
+    private int HeightUnit;
+    private int WeightUnit;
+    private long dateofbirth;
+    private String gender;
+    private short height;
+    private String logo;
+    private String nickname;
+    private String userid;
+    private short weight;
 
 
-    public int getHeightUnit()
+    int getHeightUnit()
     {
         return HeightUnit;
     }
 
-    public void setHeightUnit(int heightUnit)
+    void setHeightUnit(int heightUnit)
     {
         HeightUnit = heightUnit;
     }
 
-    public int getWeightUnit()
+    int getWeightUnit()
     {
         return WeightUnit;
     }
 
-    public void setWeightUnit(int weightUnit)
+    void setWeightUnit(int weightUnit)
     {
         WeightUnit = weightUnit;
     }
 
-    public long getDateofbirth()
+    long getDateofbirth()
     {
         return dateofbirth;
     }
 
-    public void setDateofbirth(long dateofbirth)
+    void setDateofbirth(long dateofbirth)
     {
         this.dateofbirth = dateofbirth;
     }
 
-    public String getGender()
+    String getGender()
     {
         return gender;
     }
-
-    public void setGender(String gender)
+    void setGender(String gender)
     {
         this.gender = gender;
     }
 
-    public short getHeight()
+    short getHeight()
     {
         return height;
     }
 
-    public void setHeight(short height)
+    void setHeight(short height)
     {
         this.height = height;
     }
 
-    public String getLogo()
+    String getLogo()
     {
         return logo;
     }
 
-    public void setLogo(String logo)
+    void setLogo(String logo)
     {
         this.logo = logo;
     }
 
-    public String getNickname()
+    String getNickname()
     {
         return nickname;
     }
 
-    public void setNickname(String nickname)
+    void setNickname(String nickname)
     {
         this.nickname = nickname;
     }
 
-    public String getUserid()
+    String getUserid()
     {
         return userid;
     }
 
-    public void setUserid(String userid)
+    void setUserid(String userid)
     {
         this.userid = userid;
     }
 
-    public short getWeight()
+    short getWeight()
     {
         return weight;
     }
 
-    public void setWeight(short weight)
+    void setWeight(short weight)
     {
         this.weight = weight;
     }

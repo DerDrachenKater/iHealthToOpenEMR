@@ -5,95 +5,94 @@ package de.breitenbach;
  */
 public class iHealthWeightData
 {
-    float BMI;
-    String DataID;
-    long MDate;
-    String Note;
-    float WeightValue;
-    long LastChangeTime;
+    private String DataSource;
+    private String TimeZone;
+    private float BMI;
+    private String DataID;
+    private long MDate;
+    private String Note;
+    private float WeightValue;
+    private long LastChangeTime;
 
-    public float getBMI()
+    float getBMI()
     {
         return BMI;
     }
 
-    public void setBMI(float BMI)
+    void setBMI(float BMI)
     {
         this.BMI = BMI;
     }
 
-    public String getDataID()
+    String getDataID()
     {
         return DataID;
     }
 
-    public void setDataID(String dataID)
+    void setDataID(String dataID)
     {
         DataID = dataID;
     }
 
-    public long getMDate()
+    long getMDate()
     {
         return MDate;
     }
 
-    public void setMDate(long MDate)
+    void setMDate(long MDate)
     {
         this.MDate = MDate;
     }
 
-    public String getNote()
+    String getNote()
     {
         return Note;
     }
 
-    public void setNote(String note)
+    void setNote(String note)
     {
         Note = note;
     }
 
-    public float getWeightValue()
+    float getWeightValue()
     {
         return WeightValue;
     }
 
-    public void setWeightValue(float weightValue)
+    void setWeightValue(float weightValue)
     {
         WeightValue = weightValue;
     }
 
-    public long getLastChangeTime()
+    long getLastChangeTime()
     {
         return LastChangeTime;
     }
 
-    public void setLastChangeTime(long lastChangeTime)
+    void setLastChangeTime(long lastChangeTime)
     {
         LastChangeTime = lastChangeTime;
     }
 
-    public String getDataSource()
+    String getDataSource()
     {
         return DataSource;
     }
 
-    public void setDataSource(String dataSource)
+    void setDataSource(String dataSource)
     {
         DataSource = dataSource;
     }
 
-    public String getTimeZone()
+    String getTimeZone()
     {
         return TimeZone;
     }
 
-    public void setTimeZone(String timeZone)
+    void setTimeZone(String timeZone)
     {
         TimeZone = timeZone;
     }
-
-    String DataSource;
-    String TimeZone;
 
     @Override
     public String toString()
