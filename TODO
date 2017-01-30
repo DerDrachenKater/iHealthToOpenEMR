@@ -1,0 +1,12 @@
+TODO
+
+-   Tabellen für alle Werte hinzufügen
+-   Diagramme hinzufügen
+-   Export zu OpenEMR
+
+
+Feature-Request:
+
+-   funktionierende OAuth-Authentifizierung
+    (derzeit hardcoded Links)
+-   MultiUser
