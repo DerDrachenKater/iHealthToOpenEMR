@@ -209,85 +209,8 @@ public class UserInterface implements ActionListener
             this.jMIfaq();
         } 
 	}
-	private void jMIuserData()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	private void jMIfaq()
-	{	
-		jTuse.setVisible(false);
-		jPAnzeige.add(jTfaq);
-		jTfaq.setVisible(true);
-		jPAnzeige.setVisible(true);
-		jTfaq.setText("");
-		jTfaq.append("Fragen und Antworten!\nHier stehen dumme Fragen.\n");
-		
-	}
-	private void jMIuse()
-	{
-		jTfaq.setVisible(false);
-		jPAnzeige.add(jTuse);
-		jTuse.setVisible(true);
-		jPAnzeige.setVisible(true);
-		jTuse.setText("");
-		jTuse.append("HowTo\nHier steht eine kleine Erkl�rung.\n");
-	}
-	private void jMIclose()
-	{
-		// TODO Auto-generated method stub
-		System.exit(0);
-		
-	}
-	private void jMIdataReload()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	private void jBbloodGlucose()
-	{
-		// TODO Auto-generated method stub
-		jBdiagram.setBackground(new Color(255,25,25));
-		jBtable.setBackground(new Color(255,25,25));
-		jBexport.setBackground(new Color(255,25,25));
-		
-		jPchoice.add(jBdiagram);
-		jPchoice.add(jBtable);
-		jPchoice.add(jBexport);
-		
-		jPchoice.setVisible(true);
-		jFwindow.pack();
-	}
-	private void jBbloodPresure()
-	{
-		// TODO Auto-generated method stub
-		jBdiagram.setBackground(new Color(255,252,25));
-		jBtable.setBackground(new Color(255,252,25));
-		jBexport.setBackground(new Color(255,252,25));
-		
-		jPchoice.add(jBdiagram);
-		jPchoice.add(jBtable);
-		jPchoice.add(jBexport);
-		
-		jPchoice.setVisible(true);
-		jFwindow.pack();
-	}
-	private void jBweight()
-	{
-		// TODO Auto-generated method stub
-		jBdiagram.setBackground(new Color(20,133,204));
-		jBtable.setBackground(new Color(20,133,204));
-		jBexport.setBackground(new Color(20,133,204));
-		
-		jPchoice.add(jBdiagram);
-		jPchoice.add(jBtable);
-		jPchoice.add(jBexport);
-		
-		jPchoice.setVisible(true);
-		jFwindow.pack();
-		
-		
-	}
+
+
 
     private void jMIuserData()
     {
@@ -326,6 +249,7 @@ public class UserInterface implements ActionListener
     private void jMIdataReload()
     {
         // TODO Auto-generated method stub
+//        ReadAllFromUrl.getData();
 
     }
 
