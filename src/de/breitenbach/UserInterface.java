@@ -3,6 +3,7 @@ package de.breitenbach;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -222,22 +223,18 @@ public class UserInterface implements ActionListener
 
     private void jTableWeight()
     {
-        String[] title= new String[]{"ID", "User","Messdatum", "Gewicht", "BMI"};
+        String[] title= new String[]{"Eintrag", "User","Messdatum", "Gewicht", "BMI"};
         table = new JTable(iHealthWeightToDB.selectWeight(),title);
-        table.setAutoResizeMode(AUTO_RESIZE_ALL_COLUMNS);
-        jPAnzeige.setPreferredSize(new Dimension(800,600));
-        jPAnzeige.add(new JScrollPane(table));
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        JScrollPane scroll = new JScrollPane(table);
+        scroll.setPreferredSize(new Dimension(800,600));
+        scroll.setMinimumSize(new Dimension(640,480));
+        table.setFillsViewportHeight(true);
+        jPAnzeige.add(scroll);
         jPchoice.setVisible(false);
         table.setVisible(true);
         jPAnzeige.setVisible(true);
         jFwindow.pack();
-        try
-        {
-            table.print();
-        }catch (PrinterException pe)
-        {
-            pe.printStackTrace();
-        }
     }
 
     private void jMIuserData()
