@@ -249,7 +249,7 @@ public class UserInterface implements ActionListener
     private void jMIdataReload()
     {
         // TODO Auto-generated method stub
-//        ReadAllFromUrl.getData();
+        ReadAllFromUrl.getData();
 
     }
 
