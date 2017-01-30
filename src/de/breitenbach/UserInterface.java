@@ -7,8 +7,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.IOException;
+
+import static javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS;
 
 public class UserInterface implements ActionListener
 {
@@ -23,7 +26,8 @@ public class UserInterface implements ActionListener
     private Font menuFont, buttonFont, button2Font, itemFont, textFont;
     private BufferedImage headerImg;
     private JTextArea jTuse, jTfaq;
-
+    private String source;
+    private JTable table;
 
     UserInterface()
     {
@@ -72,8 +76,6 @@ public class UserInterface implements ActionListener
         }
         jPheader.add(jLheader);
         jFwindow.add(jPheader, BorderLayout.NORTH);
-
-        // header = ImageIO.read(new File("../resource/Projekt eHealth.png"));
 
         jBsend = new JButton("Senden");
         jBsend.setMinimumSize(new Dimension(100, 100));
@@ -165,6 +167,11 @@ public class UserInterface implements ActionListener
         help.add(jMIuse);
         help.add(jMIfaq);
 
+        jPchoice.add(jBdiagram);
+        jPchoice.add(jBtable);
+        jPchoice.add(jBexport);
+        jPchoice.setVisible(false);
+
         jFwindow.setJMenuBar(menuBar);
         jFwindow.pack();
         jFwindow.setVisible(true);
@@ -182,7 +189,6 @@ public class UserInterface implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        // TODO Auto-generated method stub
         if (e.getSource() == jMIuserData)
         {
             this.jMIuserData();
@@ -207,12 +213,35 @@ public class UserInterface implements ActionListener
         } else if (e.getSource() == this.jMIfaq)
         {
             this.jMIfaq();
-        } 
-	}
+        } else if (e.getSource() == this.jBtable && source.equals(("weight")))
+        {
+            System.out.println("gleich");
+            this.jTableWeight();
+        }
+    }
+
+    private void jTableWeight()
+    {
+        String[] title= new String[]{"ID", "User","Messdatum", "Gewicht", "BMI"};
+        table = new JTable(iHealthWeightToDB.selectWeight(),title);
+        table.setAutoResizeMode(AUTO_RESIZE_ALL_COLUMNS);
+        jPAnzeige.setPreferredSize(new Dimension(800,600));
+        jPAnzeige.add(new JScrollPane(table));
+        jPchoice.setVisible(false);
+        table.setVisible(true);
+        jPAnzeige.setVisible(true);
+        jFwindow.pack();
+        try
+        {
+            table.print();
+        }catch (PrinterException pe)
+        {
+            pe.printStackTrace();
+        }
+    }
 
     private void jMIuserData()
     {
-        // TODO Auto-generated method stub
 
     }
 
@@ -224,6 +253,7 @@ public class UserInterface implements ActionListener
         jPAnzeige.setVisible(true);
         jTfaq.setText("");
         jTfaq.append("Fragen und Antworten!\nHier stehen dumme Fragen.\n");
+        jPchoice.setVisible(false);
 
     }
 
@@ -235,63 +265,55 @@ public class UserInterface implements ActionListener
         jPAnzeige.setVisible(true);
         jTuse.setText("");
         jTuse.append("HowTo\nHier steht eine kleine Erkl�rung.\n");
+        jPchoice.setVisible(false);
     }
 
     private void jMIclose()
     {
-        // TODO Auto-generated method stub
         System.exit(0);
 
     }
 
     private void jMIdataReload()
     {
-        // TODO Auto-generated method stub
-        //ReadAllFromUrl.getData();
 
     }
 
     private void jBbloodGlucose()
     {
-        // TODO Auto-generated method stub
         jBdiagram.setBackground(new Color(255, 25, 25));
         jBtable.setBackground(new Color(255, 25, 25));
         jBexport.setBackground(new Color(255, 25, 25));
 
-        jPchoice.add(jBdiagram);
-        jPchoice.add(jBtable);
-        jPchoice.add(jBexport);
-
+        jTuse.setVisible(false);
+        jTfaq.setVisible(false);
         jPchoice.setVisible(true);
         jFwindow.pack();
     }
 
     private void jBbloodPresure()
     {
-        // TODO Auto-generated method stub
         jBdiagram.setBackground(new Color(255, 252, 25));
         jBtable.setBackground(new Color(255, 252, 25));
         jBexport.setBackground(new Color(255, 252, 25));
 
-        jPchoice.add(jBdiagram);
-        jPchoice.add(jBtable);
-        jPchoice.add(jBexport);
-
+        jTuse.setVisible(false);
+        jTfaq.setVisible(false);
         jPchoice.setVisible(true);
         jFwindow.pack();
     }
 
     private void jBweight()
     {
-        // TODO Auto-generated method stub
         jBdiagram.setBackground(new Color(20, 133, 204));
         jBtable.setBackground(new Color(20, 133, 204));
         jBexport.setBackground(new Color(20, 133, 204));
 
-        jPchoice.add(jBdiagram);
-        jPchoice.add(jBtable);
-        jPchoice.add(jBexport);
+        jBtable.addActionListener(this);
+        source = "weight";
 
+        jTuse.setVisible(false);
+        jTfaq.setVisible(false);
         jPchoice.setVisible(true);
         jFwindow.pack();
 

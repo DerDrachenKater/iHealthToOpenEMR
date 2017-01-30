@@ -18,10 +18,10 @@ class ReadAllFromUrl
     public static void main(String[] args)
     {
 
-        iHealthUserToDB.selectUser();
+        //iHealthUserToDB.selectUser();
         //getWeightFromiHealth();
         //getBPFromiHealth();
-        iHealthBloodPressureToDB.selectBP();
+        //iHealthBloodPressureToDB.selectBP();
         iHealthWeightToDB.selectWeight();
     }
 

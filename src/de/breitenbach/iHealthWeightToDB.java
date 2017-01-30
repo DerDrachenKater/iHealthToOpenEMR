@@ -28,8 +28,9 @@ class iHealthWeightToDB
         }
 
     }
-    static void selectWeight()
+    static String[][] selectWeight()
     {
+        String table[][] = null;
         try
         {
             Connection con = DriverManager.getConnection
@@ -38,10 +39,21 @@ class iHealthWeightToDB
             ResultSet rs = stmt.executeQuery("SELECT `waage`.`ID`, `user`.`Nickname`, `Zeitstempel`, `waage`.`Gewicht`, " +
                     "`BMI` FROM `waage` join `user` on `waage`.`User-ID` = `user`.`id`");
 
-            while (rs.next())
+            rs.last();
+            int count = rs.getRow();
+            rs.beforeFirst();
+            table = new String[count][5];
+            for (int i = 0; i < count; i++)
             {
+                rs.next();
+                table[i][0] = rs.getString(1);
+                table[i][1] = rs.getString(2);
+                table[i][2] = rs.getString(3);
+                table[i][3] = rs.getString(4);
+                table[i][4] = rs.getString(5);
+
                 System.out.printf( "ID: %s; User: %s; Timestamp: %s; Gewicht: %s; BMI: %s\n",
-                        rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+                        table[i][0], table[i][1], table[i][2], table[i][3], table[i][4]);
 
             }
             rs.close();
@@ -52,5 +64,6 @@ class iHealthWeightToDB
         {
             e.printStackTrace();
         }
+        return table;
     }
 } 
