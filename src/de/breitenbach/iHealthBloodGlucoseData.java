@@ -30,4 +30,94 @@ public class iHealthBloodGlucoseData
                 ", \nTimeZone='" + TimeZone + '\'' +
                 '}';
     }
+
+    public int getBG()
+    {
+        return BG;
+    }
+
+    public void setBG(int BG)
+    {
+        this.BG = BG;
+    }
+
+    public String getDataID()
+    {
+        return DataID;
+    }
+
+    public void setDataID(String dataID)
+    {
+        DataID = dataID;
+    }
+
+    public String getDinnerSituation()
+    {
+        return DinnerSituation;
+    }
+
+    public void setDinnerSituation(String dinnerSituation)
+    {
+        DinnerSituation = dinnerSituation;
+    }
+
+    public String getDrugSituation()
+    {
+        return DrugSituation;
+    }
+
+    public void setDrugSituation(String drugSituation)
+    {
+        DrugSituation = drugSituation;
+    }
+
+    public long getMData()
+    {
+        return MData;
+    }
+
+    public void setMData(long MData)
+    {
+        this.MData = MData;
+    }
+
+    public String getNote()
+    {
+        return Note;
+    }
+
+    public void setNote(String note)
+    {
+        Note = note;
+    }
+
+    public long getLastChangeTime()
+    {
+        return LastChangeTime;
+    }
+
+    public void setLastChangeTime(long lastChangeTime)
+    {
+        LastChangeTime = lastChangeTime;
+    }
+
+    public String getDataSource()
+    {
+        return DataSource;
+    }
+
+    public void setDataSource(String dataSource)
+    {
+        DataSource = dataSource;
+    }
+
+    public String getTimeZone()
+    {
+        return TimeZone;
+    }
+
+    public void setTimeZone(String timeZone)
+    {
+        TimeZone = timeZone;
+    }
 }
