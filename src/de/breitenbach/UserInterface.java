@@ -210,8 +210,6 @@ public class UserInterface implements ActionListener
         } 
 	}
 
-
-
     private void jMIuserData()
     {
         // TODO Auto-generated method stub
