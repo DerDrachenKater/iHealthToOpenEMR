@@ -51,10 +51,6 @@ class iHealthWeightToDB
                 table[i][2] = rs.getString(3);
                 table[i][3] = rs.getString(4);
                 table[i][4] = rs.getString(5);
-
-                System.out.printf( "ID: %s; User: %s; Timestamp: %s; Gewicht: %s; BMI: %s\n",
-                        table[i][0], table[i][1], table[i][2], table[i][3], table[i][4]);
-
             }
             rs.close();
             stmt.close();

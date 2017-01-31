@@ -216,18 +216,45 @@ public class UserInterface implements ActionListener
             this.jMIfaq();
         } else if (e.getSource() == this.jBtable && source.equals(("weight")))
         {
-            System.out.println("gleich");
             this.jTableWeight();
+        } else if (e.getSource()==this.jBtable && source.equals("pressure"))
+        {
+            this.jTablePressure();
         }
     }
 
     private void jTableWeight()
     {
+        if (table!=null)
+        {
+            jPAnzeige.removeAll();
+        }
+        table = null;
         String[] title= new String[]{"Eintrag", "User","Messdatum", "Gewicht", "BMI"};
         table = new JTable(iHealthWeightToDB.selectWeight(),title);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(table);
-        scroll.setPreferredSize(new Dimension(800,600));
+        scroll.setPreferredSize(new Dimension(1024,480));
+        scroll.setMinimumSize(new Dimension(640,480));
+        table.setFillsViewportHeight(true);
+        jPAnzeige.add(scroll);
+        jPchoice.setVisible(false);
+        table.setVisible(true);
+        jPAnzeige.setVisible(true);
+        jFwindow.pack();
+    }
+    private void jTablePressure()
+    {
+        if (table!=null)
+        {
+            jPAnzeige.removeAll();
+        }
+        table = null;
+        String[] title= new String[]{"Eintrag", "User","Messdatum", "Systole", "Diastole", "Puls"};
+        table = new JTable(iHealthBloodPressureToDB.selectBP(),title);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        JScrollPane scroll = new JScrollPane(table);
+        scroll.setPreferredSize(new Dimension(1024,480));
         scroll.setMinimumSize(new Dimension(640,480));
         table.setFillsViewportHeight(true);
         jPAnzeige.add(scroll);
@@ -244,6 +271,7 @@ public class UserInterface implements ActionListener
 
     private void jMIfaq()
     {
+        jPAnzeige.removeAll();
         jTuse.setVisible(false);
         jPAnzeige.add(jTfaq);
         jTfaq.setVisible(true);
@@ -256,6 +284,7 @@ public class UserInterface implements ActionListener
 
     private void jMIuse()
     {
+        jPAnzeige.removeAll();
         jTfaq.setVisible(false);
         jPAnzeige.add(jTuse);
         jTuse.setVisible(true);
@@ -282,6 +311,9 @@ public class UserInterface implements ActionListener
         jBtable.setBackground(new Color(255, 25, 25));
         jBexport.setBackground(new Color(255, 25, 25));
 
+        jBtable.addActionListener(this);
+        source = "glucose";
+
         jTuse.setVisible(false);
         jTfaq.setVisible(false);
         jPchoice.setVisible(true);
@@ -293,6 +325,9 @@ public class UserInterface implements ActionListener
         jBdiagram.setBackground(new Color(255, 252, 25));
         jBtable.setBackground(new Color(255, 252, 25));
         jBexport.setBackground(new Color(255, 252, 25));
+
+        jBtable.addActionListener(this);
+        source = "pressure";
 
         jTuse.setVisible(false);
         jTfaq.setVisible(false);
@@ -313,7 +348,6 @@ public class UserInterface implements ActionListener
         jTfaq.setVisible(false);
         jPchoice.setVisible(true);
         jFwindow.pack();
-
 
     }
 
