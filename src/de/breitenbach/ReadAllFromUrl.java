@@ -15,7 +15,15 @@ class ReadAllFromUrl
     static iHealthBloodPressureData[] pressure;
     static iHealthBloodGlucoseData[] glucose;
 
-    public static void main(String[] args)
+    public static void getData()
+    {
+        getBPDataFromiHealth();
+        getUserDataFromiHealth();
+        getWeightDataFromiHealth();
+        getBGDataFromiHealth();
+    }
+
+    public static void getWeightDataFromiHealth()
     {
 
        try
@@ -27,7 +35,7 @@ class ReadAllFromUrl
             weight = gWson.fromJson(json, iHealthWeightData[].class);
             for ( int i = 0; i < weight.length; i++)
             {
-                iHealthWeightToDB.insertWeight(weight[i]);
+                iHealthWeightDB.insertWeight(weight[i]);
             }
 
         } catch (Exception e)
@@ -80,7 +88,7 @@ class ReadAllFromUrl
         }
     }
 
-    public static void getBPFromiHealth()
+    public static void getBPDataFromiHealth()
     {
         try
         {
@@ -92,7 +100,7 @@ class ReadAllFromUrl
 
             for ( int i = 0; i < pressure.length; i++)
             {
-                iHealthBloodPressureToDB.insertBP(pressure[i]);
+                iHealthBloodPressureDB.insertBP(pressure[i]);
             }
         } catch (Exception e)
         {
@@ -114,7 +122,7 @@ class ReadAllFromUrl
         }
     }
 
-    public void getBGFromiHealth()
+    public static void getBGDataFromiHealth()
     {
         try
         {
@@ -128,7 +136,7 @@ class ReadAllFromUrl
 
             for ( int i = 0; i < glucose.length; i++)
             {
-                iHealthBloodGlucoseToDB.insertBG(glucose[i]);
+                iHealthBloodGlucoseDB.insertBG(glucose[i]);
             }
         } catch (Exception e)
         {

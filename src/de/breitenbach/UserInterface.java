@@ -1,30 +1,29 @@
 package de.breitenbach;
 
+import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XYChart;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.IOException;
 
-import static javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS;
-
 public class UserInterface implements ActionListener
 {
-    public JLabel jLtarget, jLtime, JLuserData, jLweight, jLbloodGlucose, jLbloodPresure, jLheader;
+    public JLabel jLtarget, jLtime, jLheader;
     public JButton jBweight, jBbloodGlucose, jBbloodPresure, jBdiagram, jBtable, jBexport;
     public JButton jBsend, jBabort, jBclose;
     public JCheckBox jCBweight, jCBbloodGlucose, jCBbloodPresure;
-    public JComboBox<String> JCoBtime, JCoBtarget;
+    public JComboBox<String> jCoBtime, jCoBtarget;
     private JFrame jFwindow;
-    private JPanel jPLayout, jPchoice, jPAnzeige, jPheader, jPdivide;
+    private JPanel jPLayout, jPchoice, jPAnzeige, jPheader, jPdivide, jPexport, jPsend, jPtarget, jPtime;
     private JMenuItem jMIclose, jMIuse, jMIfaq, jMIdataReload, jMIuserData;
-    private Font menuFont, buttonFont, button2Font, itemFont, textFont;
+    private Font menuFont, buttonFont, button2Font, itemFont, textFont, exportFont;
     private BufferedImage headerImg;
     private JTextArea jTuse, jTfaq;
     private String source;
@@ -39,6 +38,7 @@ public class UserInterface implements ActionListener
         button2Font = new Font(Font.DIALOG, 0, 24);
         itemFont = new Font(Font.DIALOG, 0, 18);
         textFont = new Font(Font.DIALOG, 0, 18);
+        exportFont = new Font(Font.SERIF,0, 26);
 
         JMenuBar menuBar;
         JMenu menu, help;
@@ -134,8 +134,26 @@ public class UserInterface implements ActionListener
         jBbloodPresure.setBackground(new Color(255, 252, 25));
 
         jCBweight = new JCheckBox("Gewicht");
+        jCBweight.setFont(exportFont);
         jCBbloodGlucose = new JCheckBox("Blutzucker");
+        jCBbloodGlucose.setFont(exportFont);
         jCBbloodPresure = new JCheckBox("Blutdruck");
+        jCBbloodPresure.setFont(exportFont);
+
+        jCoBtime = new JComboBox<>();
+        jCoBtime.setMinimumSize(new Dimension(200,20));
+        jCoBtime.addItem("letzte 30 Tage");
+        jCoBtime.setFont(exportFont);
+
+        jCoBtarget = new JComboBox<>();
+        jCoBtarget.setMinimumSize(new Dimension(200,20));
+        jCoBtarget.addItem("Dr. med. Hausarzt");
+        jCoBtarget.setFont(exportFont);
+
+        jLtarget = new JLabel("Ziel: ");
+        jLtarget.setFont(exportFont);
+        jLtime = new JLabel("Zeit: ");
+        jLtime.setFont(exportFont);
 
         jPLayout.add(jBweight);
         jPLayout.add(jBbloodPresure);
@@ -185,7 +203,10 @@ public class UserInterface implements ActionListener
         jMIclose.addActionListener(this);
         jMIuse.addActionListener(this);
         jMIfaq.addActionListener(this);
+        jBexport.addActionListener(this);
     }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e)
@@ -220,18 +241,96 @@ public class UserInterface implements ActionListener
         } else if (e.getSource()==this.jBtable && source.equals("pressure"))
         {
             this.jTablePressure();
+        } else if (e.getSource()==this.jBdiagram && source.equals("weight"))
+        {
+            this.jChartWeight();
+        } else if (e.getSource() == this.jBdiagram && source.equals("pressure"))
+        {
+            this.jChartBP();
+        } else if (e.getSource() == this.jBexport)
+        {
+            this.jExport();
         }
     }
 
+    private void jChartBP()
+    {
+        jPAnzeige.removeAll();
+        XYChart chart = iHealthBPDataToGraph.paintBPTGraph();
+        new SwingWrapper(chart).displayChart();
+    }
+
+    private void jChartWeight()
+    {
+        jPAnzeige.removeAll();
+        XYChart chart = iHealthWeighttoGraph.paintWeightToGraph();
+        new SwingWrapper(chart).displayChart();
+    }
+
+    private void jExport()
+    {
+        // public JCheckBox jCBweight, jCBbloodGlucose, jCBbloodPresure;
+       // public JComboBox<String> jCoBtime, jCoBtarget;  jPexport, jPsend
+
+        jPAnzeige.removeAll();
+
+        jPAnzeige.setLayout(new BorderLayout());
+
+        jPexport = new JPanel();
+        jPsend = new JPanel();
+        jPtarget = new JPanel();
+        jPtime = new JPanel();
+
+        jPexport.setLayout(new GridLayout(10,1,50,10));
+        jPsend.setLayout(new GridLayout(1,4,50,10));
+        jPtarget.setLayout(new FlowLayout(FlowLayout.LEFT,10,10));
+        jPtime.setLayout(new FlowLayout(FlowLayout.LEFT,10,10));
+
+        JPanel abstand = new JPanel();
+        abstand.setMinimumSize(new Dimension(50,10));
+        abstand.setPreferredSize(new Dimension(50,10));
+
+
+        jPAnzeige.add(jPexport,BorderLayout.CENTER);
+        jPAnzeige.add(jPsend,BorderLayout.SOUTH);
+        jPAnzeige.add(abstand, BorderLayout.WEST);
+
+
+        jPexport.add(jCBweight,0);
+        jPexport.add(jCBbloodGlucose,1);
+        jPexport.add(jCBbloodPresure,2);
+        //leere Zellen für bessere Optik
+        jPexport.add(new JPanel(),3);
+        jPexport.add(new JPanel(), 4);
+
+        jPexport.add(jPtarget,5);
+        jPexport.add(jPtime,6);
+        jPtarget.add(jLtarget);
+        jPtarget.add(jCoBtarget);
+        jPtime.add(jLtime);
+        jPtime.add(jCoBtime);
+
+        //jPsend.add(new JPanel());
+        jPsend.add(jBabort);
+        jPsend.add( new JPanel());
+        jPsend.add(jBsend);
+        jPsend.add(new JPanel());
+
+        jPAnzeige.setVisible(true);
+        jPsend.setVisible(true);
+        jPexport.setVisible(true);
+
+        jFwindow.pack();
+
+
+    }
     private void jTableWeight()
     {
-        if (table!=null)
-        {
-            jPAnzeige.removeAll();
-        }
+        jPAnzeige.removeAll();
+
         table = null;
         String[] title= new String[]{"Eintrag", "User","Messdatum", "Gewicht", "BMI"};
-        table = new JTable(iHealthWeightToDB.selectWeight(),title);
+        table = new JTable(iHealthWeightDB.selectWeight(),title);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(table);
         scroll.setPreferredSize(new Dimension(1024,480));
@@ -245,13 +344,10 @@ public class UserInterface implements ActionListener
     }
     private void jTablePressure()
     {
-        if (table!=null)
-        {
-            jPAnzeige.removeAll();
-        }
+        jPAnzeige.removeAll();
         table = null;
         String[] title= new String[]{"Eintrag", "User","Messdatum", "Systole", "Diastole", "Puls"};
-        table = new JTable(iHealthBloodPressureToDB.selectBP(),title);
+        table = new JTable(iHealthBloodPressureDB.selectBP(),title);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(table);
         scroll.setPreferredSize(new Dimension(1024,480));
@@ -302,9 +398,7 @@ public class UserInterface implements ActionListener
 
     private void jMIdataReload()
     {
-        // TODO Auto-generated method stub
-        //ReadAllFromUrl.getData();
-
+        ReadAllFromUrl.getData();
     }
 
     private void jBbloodGlucose()
@@ -329,6 +423,7 @@ public class UserInterface implements ActionListener
         jBexport.setBackground(new Color(255, 252, 25));
 
         jBtable.addActionListener(this);
+        jBdiagram.addActionListener(this);
         source = "pressure";
 
         jTuse.setVisible(false);
@@ -344,6 +439,7 @@ public class UserInterface implements ActionListener
         jBexport.setBackground(new Color(20, 133, 204));
 
         jBtable.addActionListener(this);
+        jBdiagram.addActionListener(this);
         source = "weight";
 
         jTuse.setVisible(false);

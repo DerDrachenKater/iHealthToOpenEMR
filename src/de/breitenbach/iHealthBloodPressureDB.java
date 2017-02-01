@@ -2,14 +2,15 @@ package de.breitenbach;
 
 import java.sql.*;
 
-public class iHealthBloodPressureToDB
+class iHealthBloodPressureDB
 {
 
     static void insertBP(iHealthBloodPressureData bp)
     {
+       Connection con;
         try
         {
-            Connection con = DriverManager.getConnection
+            con = DriverManager.getConnection
                     ("jdbc:mariadb://localhost:3306/ehealth", "root", "mar44br89");
             PreparedStatement psInsertBP = con.prepareStatement(
                     "INSERT INTO `blutdruck` (`User-ID`, `Timestamp`, `Systole`,`Diastole`, `Puls`) VALUES (?, FROM_UNIXTIME(?), ?, ?,?);");
@@ -26,7 +27,7 @@ public class iHealthBloodPressureToDB
             e.printStackTrace();
         }
 
-        Connection con = null;
+        con = null;
 
 
     }
