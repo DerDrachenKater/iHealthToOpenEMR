@@ -18,16 +18,7 @@ class ReadAllFromUrl
     public static void main(String[] args)
     {
 
-        //iHealthUserToDB.selectUser();
-        //getWeightFromiHealth();
-        //getBPFromiHealth();
-        //iHealthBloodPressureToDB.selectBP();
-        iHealthWeightToDB.selectWeight();
-    }
-
-    public static void getWeightFromiHealth()
-    {
-        try
+       try
         {
             URL url = new URL("https://openapi.ihealthlabs.eu/openapiv2/user/43caf107534145bbb9079fc640c2e355/weight.json/?client_id=8adb7479352e4731aa9bd51b7358cf68&client_secret=803e5babac9d483daa6902b34906f874&redirect_uri=http://localhost&access_token=SRmuCFxq6pdDNM5cAi7OJ9ZUhcbriZnI5JfbVAu-ntbvgdMLizPKwnnZdML5-2YCXtuVg5vbX9wAomNSbQhQG1-pmU1YeXfqXxg5Kae6qFYQ9l2b89fC4*T72tsy4sQc0k20qXS4hmgB31jOh5ofYY2-z2Mwp4q5ar8Pzu9A*rpUngo-jhAEi*wKmf1CyT4GfP7LEOki0zj6Y6jf-jc8cQ&sc=C0BCC8D6FD3744569F950D7348284F27&sv=9125F3B8BEE54E14B23407E9303B81BF");
             is = url.openStream();
