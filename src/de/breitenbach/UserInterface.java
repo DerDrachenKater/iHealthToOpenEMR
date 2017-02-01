@@ -28,6 +28,7 @@ public class UserInterface implements ActionListener
     private JTextArea jTuse, jTfaq;
     private String source;
     private JTable table;
+    private XYChart chart;
 
     UserInterface()
     {
@@ -44,7 +45,7 @@ public class UserInterface implements ActionListener
         JMenu menu, help;
 
         jFwindow = new JFrame("With iHealth to eHealth");
-        jFwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFwindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jFwindow.setLayout(new BorderLayout());
         jFwindow.setMinimumSize(new Dimension(1280, 1024));
         jFwindow.setPreferredSize(new Dimension(1280, 1024));
@@ -255,15 +256,17 @@ public class UserInterface implements ActionListener
 
     private void jChartBP()
     {
+        chart = null;
         jPAnzeige.removeAll();
-        XYChart chart = iHealthBPDataToGraph.paintBPTGraph();
-        new SwingWrapper(chart).displayChart();
+        chart = iHealthBPDataToGraph.paintBPTGraph();
+       new SwingWrapper(chart).displayChart();
     }
 
     private void jChartWeight()
     {
+        chart = null;
         jPAnzeige.removeAll();
-        XYChart chart = iHealthWeighttoGraph.paintWeightToGraph();
+        chart = iHealthWeighttoGraph.paintWeightToGraph();
         new SwingWrapper(chart).displayChart();
     }
 
