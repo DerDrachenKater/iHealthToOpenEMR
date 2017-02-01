@@ -15,7 +15,15 @@ class ReadAllFromUrl
     static iHealthBloodPressureData[] pressure;
     static iHealthBloodGlucoseData[] glucose;
 
-    public static void main(String[] args)
+    public static void getData()
+    {
+        getBPDataFromiHealth();
+        getUserDataFromiHealth();
+        getWeightDataFromiHealth();
+        getBGDataFromiHealth();
+    }
+
+    public static void getWeightDataFromiHealth()
     {
 
        try
@@ -80,7 +88,7 @@ class ReadAllFromUrl
         }
     }
 
-    public static void getBPFromiHealth()
+    public static void getBPDataFromiHealth()
     {
         try
         {
@@ -114,7 +122,7 @@ class ReadAllFromUrl
         }
     }
 
-    public void getBGFromiHealth()
+    public static void getBGDataFromiHealth()
     {
         try
         {
