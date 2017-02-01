@@ -1,18 +1,17 @@
 package de.breitenbach;
 
+import org.knowm.xchart.SwingWrapper;
+import org.knowm.xchart.XYChart;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.awt.print.PrinterException;
 import java.io.File;
 import java.io.IOException;
-
-import static javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS;
 
 public class UserInterface implements ActionListener
 {
@@ -22,7 +21,7 @@ public class UserInterface implements ActionListener
     public JCheckBox jCBweight, jCBbloodGlucose, jCBbloodPresure;
     public JComboBox<String> JCoBtime, JCoBtarget;
     private JFrame jFwindow;
-    private JPanel jPLayout, jPchoice, jPAnzeige, jPheader, jPdivide;
+    private JPanel jPLayout, jPchoice, jPAnzeige, jPheader, jPdivide, jPchart;
     private JMenuItem jMIclose, jMIuse, jMIfaq, jMIdataReload, jMIuserData;
     private Font menuFont, buttonFont, button2Font, itemFont, textFont;
     private BufferedImage headerImg;
@@ -220,7 +219,27 @@ public class UserInterface implements ActionListener
         } else if (e.getSource()==this.jBtable && source.equals("pressure"))
         {
             this.jTablePressure();
+        }else if (e.getSource()==this.jBdiagram && source.equals("weight"))
+        {
+            this.jChartWeight();
+        } else if (e.getSource() == this.jBdiagram && source.equals("pressure"))
+        {
+            this.jChartBP();
         }
+    }
+
+    private void jChartBP()
+    {
+        jPAnzeige.removeAll();
+        XYChart chart = iHealthBPDataToGraph.paintBPTGraph();
+        new SwingWrapper(chart).displayChart();
+    }
+
+    private void jChartWeight()
+    {
+        jPAnzeige.removeAll();
+        XYChart chart = iHealthWeighttoGraph.paintWeightToGraph();
+        new SwingWrapper(chart).displayChart();
     }
 
     private void jTableWeight()
@@ -231,7 +250,7 @@ public class UserInterface implements ActionListener
         }
         table = null;
         String[] title= new String[]{"Eintrag", "User","Messdatum", "Gewicht", "BMI"};
-        table = new JTable(iHealthWeightToDB.selectWeight(),title);
+        table = new JTable(iHealthWeightDB.selectWeight(),title);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(table);
         scroll.setPreferredSize(new Dimension(1024,480));
@@ -251,7 +270,7 @@ public class UserInterface implements ActionListener
         }
         table = null;
         String[] title= new String[]{"Eintrag", "User","Messdatum", "Systole", "Diastole", "Puls"};
-        table = new JTable(iHealthBloodPressureToDB.selectBP(),title);
+        table = new JTable(iHealthBloodPressureDB.selectBP(),title);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(table);
         scroll.setPreferredSize(new Dimension(1024,480));
@@ -327,6 +346,7 @@ public class UserInterface implements ActionListener
         jBexport.setBackground(new Color(255, 252, 25));
 
         jBtable.addActionListener(this);
+        jBdiagram.addActionListener(this);
         source = "pressure";
 
         jTuse.setVisible(false);
@@ -342,6 +362,7 @@ public class UserInterface implements ActionListener
         jBexport.setBackground(new Color(20, 133, 204));
 
         jBtable.addActionListener(this);
+        jBdiagram.addActionListener(this);
         source = "weight";
 
         jTuse.setVisible(false);

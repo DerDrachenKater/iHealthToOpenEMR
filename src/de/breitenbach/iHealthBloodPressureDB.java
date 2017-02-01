@@ -2,33 +2,37 @@ package de.breitenbach;
 
 import java.sql.*;
 
-/**
- * Created by nerix on 29.01.17. 
- */
-class iHealthWeightToDB
+class iHealthBloodPressureDB
 {
-    static void insertWeight (iHealthWeightData weight)
+
+    static void insertBP(iHealthBloodPressureData bp)
     {
+       Connection con;
         try
         {
-            Connection con = DriverManager.getConnection
+            con = DriverManager.getConnection
                     ("jdbc:mariadb://localhost:3306/ehealth", "root", "mar44br89");
-            PreparedStatement psInsertWeight = con.prepareStatement(
-                    "INSERT INTO `waage` (`User-ID`, `Zeitstempel`, `Gewicht`, `BMI`) VALUES (?, FROM_UNIXTIME(?), " +
-                            "?, ?);");
-            psInsertWeight.setInt(1,3);
-            psInsertWeight.setLong(2,weight.getMDate());
-            psInsertWeight.setFloat(3,weight.getWeightValue());
-            psInsertWeight.setFloat(4, weight.getBMI());
-            psInsertWeight.execute();
+            PreparedStatement psInsertBP = con.prepareStatement(
+                    "INSERT INTO `blutdruck` (`User-ID`, `Timestamp`, `Systole`,`Diastole`, `Puls`) VALUES (?, FROM_UNIXTIME(?), ?, ?,?);");
+            psInsertBP.setInt(1, 3);
+            psInsertBP.setLong(2, bp.getMDate());
+            psInsertBP.setInt(3, bp.getHP());
+            psInsertBP.setInt(4, bp.getLP());
+            psInsertBP.setInt(5, bp.getHR());
+            psInsertBP.execute();
 
         } catch (SQLException e)
         {
+            System.err.println("Fehler beim Einfügen in die Datenbank!");
             e.printStackTrace();
         }
 
+        con = null;
+
+
     }
-    static String[][] selectWeight()
+
+    static String[][] selectBP()
     {
         String table[][] = null;
         try
@@ -36,13 +40,14 @@ class iHealthWeightToDB
             Connection con = DriverManager.getConnection
                     ("jdbc:mariadb://localhost:3306/ehealth", "root", "mar44br89");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT `waage`.`ID`, `user`.`Nickname`, `Zeitstempel`, `waage`.`Gewicht`, " +
-                    "`BMI` FROM `waage` join `user` on `waage`.`User-ID` = `user`.`id`");
+
+            ResultSet rs = stmt.executeQuery("SELECT `blutdruck`.`ID`, `user`.`Nickname`, `Timestamp`, `Systole`, " +
+                    "`Diastole`, `Puls` FROM `blutdruck` JOIN `user` ON `blutdruck`.`User-ID` = `user`.`id`");
 
             rs.last();
             int count = rs.getRow();
             rs.beforeFirst();
-            table = new String[count][5];
+            table = new String[count][6];
             for (int i = 0; i < count; i++)
             {
                 rs.next();
@@ -51,15 +56,14 @@ class iHealthWeightToDB
                 table[i][2] = rs.getString(3);
                 table[i][3] = rs.getString(4);
                 table[i][4] = rs.getString(5);
+                table[i][5] = rs.getString(6);
             }
             rs.close();
             stmt.close();
-
-
         } catch (SQLException e)
         {
             e.printStackTrace();
         }
         return table;
     }
-} 
+}

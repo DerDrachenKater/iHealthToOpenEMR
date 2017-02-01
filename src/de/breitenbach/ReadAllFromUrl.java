@@ -35,7 +35,7 @@ class ReadAllFromUrl
             weight = gWson.fromJson(json, iHealthWeightData[].class);
             for ( int i = 0; i < weight.length; i++)
             {
-                iHealthWeightToDB.insertWeight(weight[i]);
+                iHealthWeightDB.insertWeight(weight[i]);
             }
 
         } catch (Exception e)
@@ -100,7 +100,7 @@ class ReadAllFromUrl
 
             for ( int i = 0; i < pressure.length; i++)
             {
-                iHealthBloodPressureToDB.insertBP(pressure[i]);
+                iHealthBloodPressureDB.insertBP(pressure[i]);
             }
         } catch (Exception e)
         {
@@ -136,7 +136,7 @@ class ReadAllFromUrl
 
             for ( int i = 0; i < glucose.length; i++)
             {
-                iHealthBloodGlucoseToDB.insertBG(glucose[i]);
+                iHealthBloodGlucoseDB.insertBG(glucose[i]);
             }
         } catch (Exception e)
         {

@@ -5,7 +5,7 @@ import java.sql.*;
 /** 
  * Created by nerix on 29.01.17. 
  */ 
-public class iHealthBloodGlucoseToDB 
+public class iHealthBloodGlucoseDB
 { 
     static PreparedStatement psInsertUser = null; 
     static PreparedStatement psSelectUser = null; 

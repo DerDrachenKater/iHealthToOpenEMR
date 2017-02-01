@@ -9,18 +9,17 @@ import org.knowm.xchart.style.lines.SeriesLines;
 import org.knowm.xchart.style.markers.SeriesMarkers;
 
 import java.awt.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-class iHealthBPDataToGraph
+/**
+ * Created by nerix on 01.02.17.
+ */
+public class iHealthWeighttoGraph
 {
-
-
-    static XYChart paintBPTGraph()
+    static XYChart paintWeightToGraph()
     {
         XYChart graph = new XYChartBuilder().width(800).height(600).title("Gewicht").theme(Styler.ChartTheme.GGPlot2)
                 .build();
@@ -29,8 +28,7 @@ class iHealthBPDataToGraph
 
         String[][] table = iHealthWeightDB.selectWeight();
         List<Date> dates = new ArrayList<Date>();
-        List<Double> systole = new ArrayList<>();
-        List<Double> diastole = new ArrayList<>();
+        List<Double> values = new ArrayList<Double>();
 
         DateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss.S");
         Date date = null;
@@ -44,12 +42,15 @@ class iHealthBPDataToGraph
             {
                 pe.printStackTrace();
             }
-            systole.add(Double.parseDouble(table[i][3]));
-            diastole.add(Double.parseDouble(table[i][4]));
+            values.add(Double.parseDouble(table[i][3]));
             dates.add(date);
         }
-        graph.addSeries("Systole", dates,systole);
-        graph.addSeries("Diastole", dates, diastole);
+        XYSeries chart = graph.addSeries("Gewichtsdaten",dates,values);
+
+        chart.setLineColor(XChartSeriesColors.BLUE);
+        chart.setMarkerColor(Color.ORANGE);
+        chart.setMarker(SeriesMarkers.CIRCLE);
+        chart.setLineStyle(SeriesLines.SOLID);
 
         return graph;
     }
