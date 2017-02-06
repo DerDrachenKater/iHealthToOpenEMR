@@ -2,6 +2,7 @@ package de.breitenbach;
 
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
+import org.knowm.xchart.XChartPanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,7 +22,7 @@ public class UserInterface implements ActionListener
     public JCheckBox jCBweight, jCBbloodGlucose, jCBbloodPresure;
     public JComboBox<String> jCoBtime, jCoBtarget;
     private JFrame jFwindow;
-    private JPanel jPLayout, jPchoice, jPAnzeige, jPheader, jPdivide, jPexport, jPsend, jPtarget, jPtime;
+    private JPanel jPLayout, jPchoice, jPAnzeige, jPheader, jPdivide, jPexport, jPsend, jPtarget, jPtime, jPchart;
     private JMenuItem jMIclose, jMIuse, jMIfaq, jMIdataReload, jMIuserData;
     private Font menuFont, buttonFont, button2Font, itemFont, textFont, exportFont;
     private BufferedImage headerImg;
@@ -257,17 +258,23 @@ public class UserInterface implements ActionListener
     private void jChartBP()
     {
         chart = null;
+        jPchart = null;
         jPAnzeige.removeAll();
         chart = iHealthBPDataToGraph.paintBPTGraph();
-       new SwingWrapper(chart).displayChart();
+        jPchart = new XChartPanel<>(chart);
+        jPAnzeige.add(jPchart);
+        jFwindow.pack();
     }
 
     private void jChartWeight()
     {
         chart = null;
+        jPchart = null;
         jPAnzeige.removeAll();
         chart = iHealthWeighttoGraph.paintWeightToGraph();
-        new SwingWrapper(chart).displayChart();
+        jPchart = new XChartPanel<>(chart);
+        jPAnzeige.add(jPchart);
+        jFwindow.pack();
     }
 
     private void jExport()
