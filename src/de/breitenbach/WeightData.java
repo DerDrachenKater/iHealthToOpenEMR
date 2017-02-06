@@ -3,27 +3,26 @@ package de.breitenbach;
 /**
  * Created by yamaneko on 28.01.2017.
  */
-public class iHealthBloodPressureData
+public class WeightData
 {
-    private int BPL;
-    private String DataID;
-    private int HP;
-    private int HR;
-    private int LP;
-    private long MDate;
-    private String Note;
-    private long LastChangeTime;
     private String DataSource;
     private String TimeZone;
+    private float BMI;
+    private String DataID;
+    private long MDate;
+    private String Note;
+    private float WeightValue;
+    private long LastChangeTime;
+    private int userID;
 
-    int getBPL()
+    float getBMI()
     {
-        return BPL;
+        return BMI;
     }
 
-    void setBPL(int BPL)
+    void setBMI(float BMI)
     {
-        this.BPL = BPL;
+        this.BMI = BMI;
     }
 
     String getDataID()
@@ -34,36 +33,6 @@ public class iHealthBloodPressureData
     void setDataID(String dataID)
     {
         DataID = dataID;
-    }
-
-    int getHP()
-    {
-        return HP;
-    }
-
-    void setHP(int HP)
-    {
-        this.HP = HP;
-    }
-
-    int getHR()
-    {
-        return HR;
-    }
-
-    void setHR(int HR)
-    {
-        this.HR = HR;
-    }
-
-    int getLP()
-    {
-        return LP;
-    }
-
-    void setLP(int LP)
-    {
-        this.LP = LP;
     }
 
     long getMDate()
@@ -84,6 +53,16 @@ public class iHealthBloodPressureData
     void setNote(String note)
     {
         Note = note;
+    }
+
+    float getWeightValue()
+    {
+        return WeightValue;
+    }
+
+    void setWeightValue(float weightValue)
+    {
+        WeightValue = weightValue;
     }
 
     long getLastChangeTime()
@@ -116,18 +95,25 @@ public class iHealthBloodPressureData
         TimeZone = timeZone;
     }
 
+    public int getUserID()
+    {
+        return userID;
+    }
+
+    public void setUserID(int userID)
+    {
+        this.userID = userID;
+    }
+
     @Override
     public String toString()
     {
-
-        return "iHealthBloodPressureData{\n" +
-                "BPL=" + BPL +
+        return "iHealthWeightData{\n" +
+                "BMI=" + BMI +
                 ", \nDataID='" + DataID + '\'' +
-                ", \nHP=" + HP +
-                ", \nHR=" + HR +
-                ", \nLP=" + LP +
                 ", \nMDate=" + MDate +
                 ", \nNote='" + Note + '\'' +
+                ", \nWeightValue=" + WeightValue +
                 ", \nLastChangeTime=" + LastChangeTime +
                 ", \nDataSource='" + DataSource + '\'' +
                 ", \nTimeZone='" + TimeZone + '\'' +

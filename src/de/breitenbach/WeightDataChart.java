@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by nerix on 01.02.17.
  */
-public class iHealthWeighttoGraph
+public class WeightDataChart
 {
     static XYChart paintWeightToGraph()
     {
@@ -26,7 +26,7 @@ public class iHealthWeighttoGraph
         graph.getStyler().setLegendPosition(Styler.LegendPosition.InsideNE);
         graph.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
 
-        String[][] table = iHealthWeightDB.selectWeight();
+        String[][] table = WeightDatabase.selectWeight();
         List<Date> dates = new ArrayList<Date>();
         List<Double> values = new ArrayList<Double>();
 

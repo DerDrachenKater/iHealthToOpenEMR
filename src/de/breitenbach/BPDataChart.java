@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-class iHealthBPDataToGraph
+class BPDataChart
 {
 
 
@@ -23,7 +23,7 @@ class iHealthBPDataToGraph
         graph.getStyler().setLegendPosition(Styler.LegendPosition.InsideNE);
         graph.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Line);
 
-        String[][] table = iHealthWeightDB.selectWeight();
+        String[][] table = WeightDatabase.selectWeight();
         List<Date> dates = new ArrayList<Date>();
         List<Double> systole = new ArrayList<>();
         List<Double> diastole = new ArrayList<>();

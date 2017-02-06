@@ -1,6 +1,5 @@
 package de.breitenbach;
 
-import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XChartPanel;
 
@@ -256,11 +255,11 @@ public class UserInterface implements ActionListener
         {
             if (jCBweight.isSelected())
             {
-                iHealthWeightDB.exportWWeight();
+                WeightDatabase.exportWWeight();
             }
             if (jCBbloodPresure.isSelected())
             {
-                iHealthBloodPressureDB.exportBP();
+                BPDatabase.exportBP();
             }
         }
     }
@@ -270,7 +269,7 @@ public class UserInterface implements ActionListener
         chart = null;
         jPchart = null;
         jPAnzeige.removeAll();
-        chart = iHealthBPDataToGraph.paintBPTGraph();
+        chart = BPDataChart.paintBPTGraph();
         jPchart = new XChartPanel<>(chart);
         jPAnzeige.add(jPchart);
         jFwindow.pack();
@@ -281,7 +280,7 @@ public class UserInterface implements ActionListener
         chart = null;
         jPchart = null;
         jPAnzeige.removeAll();
-        chart = iHealthWeighttoGraph.paintWeightToGraph();
+        chart = WeightDataChart.paintWeightToGraph();
         jPchart = new XChartPanel<>(chart);
         jPAnzeige.add(jPchart);
         jFwindow.pack();
@@ -348,7 +347,7 @@ public class UserInterface implements ActionListener
 
         table = null;
         String[] title= new String[]{"Eintrag", "User","Messdatum", "Gewicht", "BMI"};
-        table = new JTable(iHealthWeightDB.selectWeight(),title);
+        table = new JTable(WeightDatabase.selectWeight(),title);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(table);
         scroll.setPreferredSize(new Dimension(1024,480));
@@ -365,7 +364,7 @@ public class UserInterface implements ActionListener
         jPAnzeige.removeAll();
         table = null;
         String[] title= new String[]{"Eintrag", "User","Messdatum", "Systole", "Diastole", "Puls"};
-        table = new JTable(iHealthBloodPressureDB.selectBP(),title);
+        table = new JTable(BPDatabase.selectBP(),title);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         JScrollPane scroll = new JScrollPane(table);
         scroll.setPreferredSize(new Dimension(1024,480));
@@ -416,7 +415,7 @@ public class UserInterface implements ActionListener
 
     private void jMIdataReload()
     {
-        ReadAllFromUrl.getData();
+        ImportFromiHealth.getData();
     }
 
     private void jBbloodGlucose()

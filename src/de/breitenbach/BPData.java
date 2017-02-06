@@ -3,26 +3,27 @@ package de.breitenbach;
 /**
  * Created by yamaneko on 28.01.2017.
  */
-public class iHealthWeightData
+public class BPData
 {
-    private String DataSource;
-    private String TimeZone;
-    private float BMI;
+    private int BPL;
     private String DataID;
+    private int HP;
+    private int HR;
+    private int LP;
     private long MDate;
     private String Note;
-    private float WeightValue;
     private long LastChangeTime;
-    private int userID;
+    private String DataSource;
+    private String TimeZone;
 
-    float getBMI()
+    int getBPL()
     {
-        return BMI;
+        return BPL;
     }
 
-    void setBMI(float BMI)
+    void setBPL(int BPL)
     {
-        this.BMI = BMI;
+        this.BPL = BPL;
     }
 
     String getDataID()
@@ -33,6 +34,36 @@ public class iHealthWeightData
     void setDataID(String dataID)
     {
         DataID = dataID;
+    }
+
+    int getHP()
+    {
+        return HP;
+    }
+
+    void setHP(int HP)
+    {
+        this.HP = HP;
+    }
+
+    int getHR()
+    {
+        return HR;
+    }
+
+    void setHR(int HR)
+    {
+        this.HR = HR;
+    }
+
+    int getLP()
+    {
+        return LP;
+    }
+
+    void setLP(int LP)
+    {
+        this.LP = LP;
     }
 
     long getMDate()
@@ -53,16 +84,6 @@ public class iHealthWeightData
     void setNote(String note)
     {
         Note = note;
-    }
-
-    float getWeightValue()
-    {
-        return WeightValue;
-    }
-
-    void setWeightValue(float weightValue)
-    {
-        WeightValue = weightValue;
     }
 
     long getLastChangeTime()
@@ -95,25 +116,18 @@ public class iHealthWeightData
         TimeZone = timeZone;
     }
 
-    public int getUserID()
-    {
-        return userID;
-    }
-
-    public void setUserID(int userID)
-    {
-        this.userID = userID;
-    }
-
     @Override
     public String toString()
     {
-        return "iHealthWeightData{\n" +
-                "BMI=" + BMI +
+
+        return "iHealthBloodPressureData{\n" +
+                "BPL=" + BPL +
                 ", \nDataID='" + DataID + '\'' +
+                ", \nHP=" + HP +
+                ", \nHR=" + HR +
+                ", \nLP=" + LP +
                 ", \nMDate=" + MDate +
                 ", \nNote='" + Note + '\'' +
-                ", \nWeightValue=" + WeightValue +
                 ", \nLastChangeTime=" + LastChangeTime +
                 ", \nDataSource='" + DataSource + '\'' +
                 ", \nTimeZone='" + TimeZone + '\'' +

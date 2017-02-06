@@ -5,14 +5,14 @@ import java.sql.*;
 /**
  * Created by nerix on 29.01.17. 
  */
-class iHealthUserToDB
+class UserDatabase
 {
     private static PreparedStatement psInsertUser = null;
 
 
 
 
-    static void insertUser (iHealthUserData user)
+    static void insertUser (UserData user)
     {
         int gender;
         try

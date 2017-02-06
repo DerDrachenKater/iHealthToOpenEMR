@@ -5,9 +5,9 @@ import java.sql.*;
 /**
  * Created by nerix on 29.01.17. 
  */
-class iHealthWeightDB
+class WeightDatabase
 {
-    static void insertWeight (iHealthWeightData weight)
+    static void insertWeight (WeightData weight)
     {
         try
         {

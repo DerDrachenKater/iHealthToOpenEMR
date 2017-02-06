@@ -3,7 +3,7 @@ package de.breitenbach;
 /**
  * Created by nerix on 28.01.17.
  */
-public class iHealthUserData
+public class UserData
 {
 
     private int HeightUnit;

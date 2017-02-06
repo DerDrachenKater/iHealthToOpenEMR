@@ -5,7 +5,7 @@ import java.sql.*;
 /** 
  * Created by nerix on 29.01.17. 
  */ 
-public class iHealthBloodGlucoseDB
+public class BGDatabase
 { 
     static PreparedStatement psInsertUser = null; 
     static PreparedStatement psSelectUser = null; 
@@ -26,7 +26,7 @@ public class iHealthBloodGlucoseDB
      }**/ 
  
  
-    public static void insertBG (iHealthBloodGlucoseData glucose) 
+    public static void insertBG (BGData glucose)
     { 
        /** try 
         { 

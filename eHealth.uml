@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="130.0" y="1179.0">de.breitenbach.Main</node>
+    <node x="1596.0" y="126.0">de.breitenbach.BGData</node>
+    <node x="0.0" y="753.0">de.breitenbach.UserInterface</node>
+    <node x="830.0" y="1277.0">de.breitenbach.BGDatabase</node>
+    <node x="0.0" y="1277.0">de.breitenbach.UserDatabase</node>
+    <node x="0.0" y="34.0">de.breitenbach.WeightData</node>
+    <node x="477.0" y="753.0">de.breitenbach.WeightDatabase</node>
+    <node x="924.0" y="563.0">de.breitenbach.ImportFromiHealth</node>
+    <node x="284.0" y="1277.0">de.breitenbach.WeightDataChart</node>
+    <node x="498.0" y="0.0">de.breitenbach.BPData</node>
+    <node x="1045.0" y="23.0">de.breitenbach.UserData</node>
+    <node x="574.0" y="1277.0">de.breitenbach.BPDataChart</node>
+    <node x="807.0" y="753.0">de.breitenbach.BPDatabase</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="de.breitenbach.ImportFromiHealth" target="de.breitenbach.BPData">
+      <point x="-28.0" y="-72.5" />
+      <point x="1008.0" y="533.0" />
+      <point x="761.5" y="533.0" />
+      <point x="0.0" y="256.5" />
+    </edge>
+    <edge source="de.breitenbach.ImportFromiHealth" target="de.breitenbach.UserData">
+      <point x="28.0" y="-72.5" />
+      <point x="1064.0" y="533.0" />
+      <point x="1310.5" y="533.0" />
+      <point x="0.0" y="233.5" />
+    </edge>
+    <edge source="de.breitenbach.Main" target="de.breitenbach.UserInterface">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="188.0" />
+    </edge>
+    <edge source="de.breitenbach.ImportFromiHealth" target="de.breitenbach.WeightData">
+      <point x="-84.0" y="-72.5" />
+      <point x="952.0" y="543.0" />
+      <point x="239.0" y="543.0" />
+      <point x="0.0" y="222.5" />
+    </edge>
+    <edge source="de.breitenbach.ImportFromiHealth" target="de.breitenbach.BGData">
+      <point x="84.0" y="-72.5" />
+      <point x="1120.0" y="543.0" />
+      <point x="1763.5" y="543.0" />
+      <point x="0.0" y="130.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5906773488710853" x="965.5" y="676.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

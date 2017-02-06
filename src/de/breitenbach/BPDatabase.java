@@ -2,10 +2,10 @@ package de.breitenbach;
 
 import java.sql.*;
 
-class iHealthBloodPressureDB
+class BPDatabase
 {
 
-    static void insertBP(iHealthBloodPressureData bp)
+    static void insertBP(BPData bp)
     {
         try
         {

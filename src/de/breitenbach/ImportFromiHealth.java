@@ -7,13 +7,13 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
 
-class ReadAllFromUrl
+class ImportFromiHealth
 {
     static InputStream is = null;
-    static iHealthUserData user;
-    static iHealthWeightData[] weight;
-    static iHealthBloodPressureData[] pressure;
-    static iHealthBloodGlucoseData[] glucose;
+    static UserData user;
+    static WeightData[] weight;
+    static BPData[] pressure;
+    static BGData[] glucose;
 
     public static void getData()
     {
@@ -32,10 +32,10 @@ class ReadAllFromUrl
             is = url.openStream();
             String json = new Scanner(is).useDelimiter("\\Z").next();
             Gson gWson = new Gson();
-            weight = gWson.fromJson(json, iHealthWeightData[].class);
+            weight = gWson.fromJson(json, WeightData[].class);
             for ( int i = 0; i < weight.length; i++)
             {
-                iHealthWeightDB.insertWeight(weight[i]);
+                WeightDatabase.insertWeight(weight[i]);
             }
 
         } catch (Exception e)
@@ -66,8 +66,8 @@ class ReadAllFromUrl
             is = url.openStream();
             String json = new Scanner(is).useDelimiter("\\Z").next();
             Gson gUson = new Gson();
-            user = gUson.fromJson(json, iHealthUserData.class);
-            iHealthUserToDB.insertUser(user);
+            user = gUson.fromJson(json, UserData.class);
+            UserDatabase.insertUser(user);
         } catch (Exception e)
         {
             System.err.println("Allgemeiner Fehler");
@@ -96,11 +96,11 @@ class ReadAllFromUrl
             is = url.openStream();
             String json = new Scanner(is).useDelimiter("\\Z").next();
             Gson gPson = new Gson();
-            pressure = gPson.fromJson(json, iHealthBloodPressureData[].class);
+            pressure = gPson.fromJson(json, BPData[].class);
 
             for ( int i = 0; i < pressure.length; i++)
             {
-                iHealthBloodPressureDB.insertBP(pressure[i]);
+                BPDatabase.insertBP(pressure[i]);
             }
         } catch (Exception e)
         {
@@ -132,11 +132,11 @@ class ReadAllFromUrl
 
             //System.out.println(new Scanner(is).useDelimiter("\\Z").next());
             Gson gGson = new Gson();
-            glucose = gGson.fromJson(json, iHealthBloodGlucoseData[].class);
+            glucose = gGson.fromJson(json, BGData[].class);
 
             for ( int i = 0; i < glucose.length; i++)
             {
-                iHealthBloodGlucoseDB.insertBG(glucose[i]);
+                BGDatabase.insertBG(glucose[i]);
             }
         } catch (Exception e)
         {

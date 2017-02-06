@@ -3,7 +3,7 @@ package de.breitenbach;
 /**
  * Created by yamaneko on 28.01.2017.
  */
-public class iHealthBloodGlucoseData
+public class BGData
 {
     int BG;
     String DataID;
