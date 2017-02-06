@@ -252,6 +252,16 @@ public class UserInterface implements ActionListener
         } else if (e.getSource() == this.jBexport)
         {
             this.jExport();
+        } else if (e.getSource()==this.jBsend)
+        {
+            if (jCBweight.isSelected())
+            {
+                iHealthWeightDB.exportWWeight();
+            }
+            if (jCBbloodPresure.isSelected())
+            {
+                iHealthBloodPressureDB.exportBP();
+            }
         }
     }
 
@@ -279,9 +289,6 @@ public class UserInterface implements ActionListener
 
     private void jExport()
     {
-        // public JCheckBox jCBweight, jCBbloodGlucose, jCBbloodPresure;
-       // public JComboBox<String> jCoBtime, jCoBtarget;  jPexport, jPsend
-
         jPAnzeige.removeAll();
 
         jPAnzeige.setLayout(new BorderLayout());
@@ -320,7 +327,6 @@ public class UserInterface implements ActionListener
         jPtime.add(jLtime);
         jPtime.add(jCoBtime);
 
-        //jPsend.add(new JPanel());
         jPsend.add(jBabort);
         jPsend.add( new JPanel());
         jPsend.add(jBsend);
@@ -329,6 +335,8 @@ public class UserInterface implements ActionListener
         jPAnzeige.setVisible(true);
         jPsend.setVisible(true);
         jPexport.setVisible(true);
+
+        jBsend.addActionListener(this);
 
         jFwindow.pack();
 

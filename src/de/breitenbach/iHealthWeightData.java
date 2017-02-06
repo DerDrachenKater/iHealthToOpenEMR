@@ -13,6 +13,7 @@ public class iHealthWeightData
     private String Note;
     private float WeightValue;
     private long LastChangeTime;
+    private int userID;
 
     float getBMI()
     {
@@ -92,6 +93,16 @@ public class iHealthWeightData
     void setTimeZone(String timeZone)
     {
         TimeZone = timeZone;
+    }
+
+    public int getUserID()
+    {
+        return userID;
+    }
+
+    public void setUserID(int userID)
+    {
+        this.userID = userID;
     }
 
     @Override

@@ -7,11 +7,11 @@ class iHealthBloodPressureDB
 
     static void insertBP(iHealthBloodPressureData bp)
     {
-       Connection con;
         try
         {
-            con = DriverManager.getConnection
-                    ("jdbc:mariadb://localhost:3306/ehealth", "root", "mar44br89");
+
+            Connection con = DriverManager.getConnection
+                    ("jdbc:mariadb://localhost:3306/ehealth", "ehealth", "mar44br89");
             PreparedStatement psInsertBP = con.prepareStatement(
                     "INSERT INTO `blutdruck` (`User-ID`, `Timestamp`, `Systole`,`Diastole`, `Puls`) VALUES (?, FROM_UNIXTIME(?), ?, ?,?);");
             psInsertBP.setInt(1, 3);
@@ -21,15 +21,48 @@ class iHealthBloodPressureDB
             psInsertBP.setInt(5, bp.getHR());
             psInsertBP.execute();
 
+            con.close();
         } catch (SQLException e)
         {
             System.err.println("Fehler beim Einfügen in die Datenbank!");
             e.printStackTrace();
         }
+    }
+    static void exportBP()
+    {
+        try
+        {
+            Connection con = DriverManager.getConnection
+                    ("jdbc:mariadb://localhost:3306/ehealth", "ehealth", "mar44br89");
+            Connection con_export = DriverManager.getConnection
+                    ("jdbc:mariadb://localhost:3306/ehealth2", "ehealth", "mar44br89");
 
-        con = null;
+            Statement stmt = con.createStatement();
 
+            ResultSet rs = stmt.executeQuery("SELECT `ID`, `User-ID`, `Timestamp`, `Systole`, " +
+                    "`Diastole`, `Puls` from `blutdruck`");
 
+            PreparedStatement psInsertBP = con_export.prepareStatement(
+                    "INSERT INTO `blutdruck` (`ID`,`User-ID`, `Timestamp`, `Systole`,`Diastole`, `Puls`) VALUES (?, " +
+                            "?, ?, ?, ?, ?);");
+
+            while(rs.next())
+            {
+                psInsertBP.setInt(1, rs.getInt(1));
+                psInsertBP.setString(2,rs.getString(2));
+                psInsertBP.setDate(3, rs.getDate(3));
+                psInsertBP.setInt(4, rs.getInt(4));
+                psInsertBP.setInt(5, rs.getInt(5));
+                psInsertBP.setInt(6, rs.getInt(6));
+                psInsertBP.execute();
+            }
+            con.close();
+            con_export.close();
+        } catch (SQLException e)
+        {
+            System.err.println("Fehler beim Einfügen in die Datenbank!");
+            e.printStackTrace();
+        }
     }
 
     static String[][] selectBP()
@@ -38,7 +71,7 @@ class iHealthBloodPressureDB
         try
         {
             Connection con = DriverManager.getConnection
-                    ("jdbc:mariadb://localhost:3306/ehealth", "root", "mar44br89");
+                    ("jdbc:mariadb://localhost:3306/ehealth", "ehealth", "mar44br89");
             Statement stmt = con.createStatement();
 
             ResultSet rs = stmt.executeQuery("SELECT `blutdruck`.`ID`, `user`.`Nickname`, `Timestamp`, `Systole`, " +
