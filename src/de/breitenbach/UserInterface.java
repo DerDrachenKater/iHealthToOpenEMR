@@ -36,10 +36,10 @@ public class UserInterface implements ActionListener
 
         menuFont = new Font(Font.DIALOG, 0, 24);
         buttonFont = new Font(Font.DIALOG, 0, 30);
-        button2Font = new Font(Font.DIALOG, 0, 24);
+        button2Font = new Font(Font.DIALOG, 0, 22);
         itemFont = new Font(Font.DIALOG, 0, 18);
         textFont = new Font(Font.DIALOG, 0, 18);
-        exportFont = new Font(Font.SERIF,0, 26);
+        exportFont = new Font(Font.SERIF,0, 22);
 
         JMenuBar menuBar;
         JMenu menu, help;
@@ -82,12 +82,12 @@ public class UserInterface implements ActionListener
         jBsend = new JButton("Senden");
         jBsend.setMinimumSize(new Dimension(100, 100));
         jBsend.setPreferredSize(new Dimension(150, 100));
-        jBsend.setFont(buttonFont);
+        jBsend.setFont(exportFont);
 
         jBabort = new JButton("Abbrechen");
         jBabort.setMinimumSize(new Dimension(100, 100));
         jBabort.setPreferredSize(new Dimension(150, 100));
-        jBabort.setFont(buttonFont);
+        jBabort.setFont(exportFont);
 
         jBclose = new JButton("Schliessen");
         jBclose.setMinimumSize(new Dimension(100, 100));
@@ -120,7 +120,7 @@ public class UserInterface implements ActionListener
         jBweight.setMinimumSize(new Dimension(100, 100));
         jBweight.setPreferredSize(new Dimension(200, 100));
         jBweight.setFont(buttonFont);
-        jBweight.setBackground(new Color(20, 133, 204));
+        jBweight.setBackground(new Color(20, 175, 251));
 
         jBbloodGlucose = new JButton("Blutzucker");
         jBbloodGlucose.setMinimumSize(new Dimension(100, 100));
@@ -162,7 +162,7 @@ public class UserInterface implements ActionListener
 
         menuBar = new JMenuBar();
         menuBar.setBackground(Color.LIGHT_GRAY);
-        menu = new JMenu("Men�");
+        menu = new JMenu("Menü");
         menu.setFont(menuFont);
         help = new JMenu("Hilfe");
         help.setFont(menuFont);
@@ -261,6 +261,9 @@ public class UserInterface implements ActionListener
             {
                 BPDatabase.exportBP();
             }
+        } else if (e.getSource() == this.jBabort)
+        {
+            this.jAbort();
         }
     }
 
@@ -336,9 +339,18 @@ public class UserInterface implements ActionListener
         jPexport.setVisible(true);
 
         jBsend.addActionListener(this);
+        jBabort.addActionListener(this);
+
 
         jFwindow.pack();
 
+
+    }
+    private void jAbort()
+    {
+        jPAnzeige.removeAll();
+        jPAnzeige.setVisible(false);
+        jFwindow.pack();
 
     }
     private void jTableWeight()
@@ -379,6 +391,21 @@ public class UserInterface implements ActionListener
 
     private void jMIuserData()
     {
+        jPAnzeige.removeAll();
+        table = null;
+        String[] title = new String[]{"Eintrag", "Geschlecht", "Name", "Größe", "Gewicht", "Geburtsdatum",
+                "iHealth-ID"};
+        //table = new JTable(UserDatabase.selectUser(), title);
+
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        JScrollPane scroll = new JScrollPane(table);
+        scroll.setPreferredSize(new Dimension(1024,480));
+        scroll.setMinimumSize(new Dimension(640,480));
+        table.setFillsViewportHeight(true);
+        jPAnzeige.add(scroll);
+        table.setVisible(true);
+        jPAnzeige.setVisible(true);
+        jFwindow.pack();
 
     }
 
@@ -451,9 +478,9 @@ public class UserInterface implements ActionListener
 
     private void jBweight()
     {
-        jBdiagram.setBackground(new Color(20, 133, 204));
-        jBtable.setBackground(new Color(20, 133, 204));
-        jBexport.setBackground(new Color(20, 133, 204));
+        jBdiagram.setBackground(new Color(20, 175, 251));
+        jBtable.setBackground(new Color(20, 175, 251));
+        jBexport.setBackground(new Color(20, 175, 251));
 
         jBtable.addActionListener(this);
         jBdiagram.addActionListener(this);
@@ -465,5 +492,4 @@ public class UserInterface implements ActionListener
         jFwindow.pack();
 
     }
-
 }
